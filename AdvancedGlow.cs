@@ -59,7 +59,7 @@ public class AdvancedGlow : BasePlugin, IPluginConfig<GlowConfig>
             return;
         }
 
-        if (player.PawnIsAlive) {
+        if (player.PawnIsAlive && Config.isAlive) {
             player.PrintToChat($"Команду могут использовать только мёртвые, без читерства!");
             return;
         }

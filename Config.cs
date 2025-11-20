@@ -8,6 +8,9 @@ public class GlowConfig : BasePluginConfig
     [JsonPropertyName("Command")]
     public string Command { get; set; } = "esp";
 
+    [JsonPropertyName("isAlive")]
+    public bool isAlive { get; set; } = true;
+
     [JsonPropertyName("EspAccessFlag")]
     public string EspAccessFlag { get; set; } = "@css/root";
 

@@ -11,3 +11,16 @@ E:\CounterStrikeSharp\AdvancedGlow\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net
 E:\CounterStrikeSharp\AdvancedGlow\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\refint\AdvancedGlow.dll
 E:\CounterStrikeSharp\AdvancedGlow\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.pdb
 E:\CounterStrikeSharp\AdvancedGlow\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\ref\AdvancedGlow.dll
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\bin\Debug\net8.0\AdvancedGlow.deps.json
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\bin\Debug\net8.0\AdvancedGlow.dll
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\bin\Debug\net8.0\AdvancedGlow.pdb
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.csproj.AssemblyReference.cache
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.GeneratedMSBuildEditorConfig.editorconfig
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.AssemblyInfoInputs.cache
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.AssemblyInfo.cs
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.csproj.CoreCompileInputs.cache
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.sourcelink.json
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.dll
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\refint\AdvancedGlow.dll
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\AdvancedGlow.pdb
+C:\CounterStrikeSharp\AdvancedGlowCS2\AdvancedGlowCS2\obj\Debug\net8.0\ref\AdvancedGlow.dll
