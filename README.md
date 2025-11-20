@@ -1,7 +1,7 @@
 # Advanced ESP (Glow Plugin)
 
-##Оригинал: https://github.com/ALBAN-1776/AdvancedGlowCS2/tree/main
-##Автор оригинала: https://github.com/ALBAN-1776
+## Оригинал: https://github.com/ALBAN-1776/AdvancedGlowCS2/tree/main
+## Автор оригинала: https://github.com/ALBAN-1776
 
 Переписанный плагин с флагов IksAdmin на флаги CounterStrikeSharp что позволяется с помощью конвертера использовать данный плагин на любую админ-систему.
 Писал его под себя, может кому еще понадобится.
