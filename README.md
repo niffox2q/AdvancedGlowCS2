@@ -8,7 +8,7 @@
 
 ## Требования для установки:
 [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp)
-[IksFlagConverter](https://github.com/Iksix/FlagsConvert) Для IksAdmin ( хотя вы можете  использовать оригинальный плагин для IksAdmin, ведь он и был предзнаначен для него )
+[IksFlagConverter](https://github.com/Iksix/FlagsConvert) для IksAdmin ( хотя вы можете  использовать оригинальный плагин, ведь он и был предзнаначен для него )\n
 [AdminSysterFlagConverter](https://github.com/MeowKusTrue/Iks_ASConvert_Fix/releases/tag/v1.0.2) Для AdminSystem
 
 ## Конфигурация:
