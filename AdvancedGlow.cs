@@ -11,7 +11,7 @@ namespace AdvancedGlow;
 public class AdvancedGlow : BasePlugin, IPluginConfig<GlowConfig>
 {
     public override string ModuleName => "Advanced ESP by. ALBAN1776 for CSSFlags";
-    public override string ModuleVersion => "2.0.0";
+    public override string ModuleVersion => "1.0.1";
     public override string ModuleAuthor => "ALBAN1776";
 
     public required GlowConfig Config { get; set; }

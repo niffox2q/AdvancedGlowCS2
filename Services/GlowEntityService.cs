@@ -26,7 +26,6 @@ public class GlowEntityService
         {
             if (player == null || !player.IsValid || !player.PawnIsAlive) return;
 
-            // Защита от ранних вызовов: если Pawn ещё не инициализирован по сцене/скелету — выйдем.
             var playerPawn = player.PlayerPawn.Value;
             if (playerPawn == null || !playerPawn.IsValid) return;
 
@@ -36,9 +35,8 @@ public class GlowEntityService
             var modelName = skeleton?.ModelState?.ModelName ?? "";
 
             if (string.IsNullOrEmpty(modelName))
-                return; // модель ещё не готова — не создаём сущности
+                return; 
 
-            // Перед созданием — удалим старое если есть
             RemoveGlowFromPlayer(player);
 
             var glowRelay = Utilities.CreateEntityByName<CBaseModelEntity>("prop_dynamic");
@@ -46,7 +44,6 @@ public class GlowEntityService
 
             if (glowRelay == null || glowEntity == null) return;
 
-            // Настраиваем модели и флаги
             glowRelay.SetModel(modelName);
             glowRelay.RenderMode = RenderMode_t.kRenderNone;
             glowRelay.Spawnflags = 256u;
@@ -56,7 +53,6 @@ public class GlowEntityService
             glowEntity.Spawnflags = 256u;
             glowEntity.DispatchSpawn();
 
-            // Настройка свечения
             glowEntity.Glow.GlowType = (byte)_config.GlowSettings.GlowStyle;
             glowEntity.Glow.GlowRange = _config.GlowSettings.GlowRange;
             glowEntity.Glow.GlowTeam = -1;
@@ -68,7 +64,6 @@ public class GlowEntityService
         }
         catch (Exception ex)
         {
-            // Логируем, но не даём упасть плагину/серверу
             Console.WriteLine($"[AdvancedGlow] Ошибка CreateGlowForPlayer: {ex}");
         }
     }

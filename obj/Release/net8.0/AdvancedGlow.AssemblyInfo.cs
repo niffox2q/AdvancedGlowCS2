@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdvancedGlow")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+510bf3ecbad0f4898bdde4e2a749f5e280f6e4a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b24d02c201e4e568cca9f47df0d27de5faf36380")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdvancedGlow")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdvancedGlow")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
