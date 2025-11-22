@@ -22,42 +22,57 @@ public class GlowEntityService
 
     public void CreateGlowForPlayer(CCSPlayerController player)
     {
-        if (player == null || !player.IsValid || !player.PawnIsAlive) return;
-
-        RemoveGlowFromPlayer(player);
-
-        var playerPawn = player.PlayerPawn.Value;
-        if (playerPawn == null) return;
-
-        var modelName = playerPawn.CBodyComponent?.SceneNode?.GetSkeletonInstance().ModelState.ModelName ?? "";
-        if (string.IsNullOrEmpty(modelName)) return;
-
-        var glowRelay = Utilities.CreateEntityByName<CBaseModelEntity>("prop_dynamic");
-        var glowEntity = Utilities.CreateEntityByName<CBaseModelEntity>("prop_dynamic");
-
-        if (glowRelay == null || glowEntity == null) return;
-
-        glowRelay.SetModel(modelName);
-        glowRelay.RenderMode = RenderMode_t.kRenderNone;
-        glowRelay.Spawnflags = 256u;
-        glowRelay.DispatchSpawn();
-
-        glowEntity.SetModel(modelName);
-        glowEntity.Spawnflags = 256u;
-        glowEntity.DispatchSpawn();
-
-        glowRelay.AcceptInput("FollowEntity", playerPawn, glowRelay, "!activator", 0);
-        glowEntity.AcceptInput("FollowEntity", glowRelay, glowEntity, "!activator", 0);
-
-        glowEntity.Glow.GlowType = (byte)_config.GlowSettings.GlowStyle;
-        glowEntity.Glow.GlowRange = _config.GlowSettings.GlowRange;
-        glowEntity.Glow.GlowTeam = -1;
-
-        lock (_lock)
+        try
         {
-            _glowingEntities[player.Slot] = new GlowEntitySet(glowRelay, glowEntity);
+            if (player == null || !player.IsValid || !player.PawnIsAlive) return;
+
+            // Защита от ранних вызовов: если Pawn ещё не инициализирован по сцене/скелету — выйдем.
+            var playerPawn = player.PlayerPawn.Value;
+            if (playerPawn == null || !playerPawn.IsValid) return;
+
+            var cbody = playerPawn.CBodyComponent;
+            var sceneNode = cbody?.SceneNode;
+            var skeleton = sceneNode?.GetSkeletonInstance();
+            var modelName = skeleton?.ModelState?.ModelName ?? "";
+
+            if (string.IsNullOrEmpty(modelName))
+                return; // модель ещё не готова — не создаём сущности
+
+            // Перед созданием — удалим старое если есть
+            RemoveGlowFromPlayer(player);
+
+            var glowRelay = Utilities.CreateEntityByName<CBaseModelEntity>("prop_dynamic");
+            var glowEntity = Utilities.CreateEntityByName<CBaseModelEntity>("prop_dynamic");
+
+            if (glowRelay == null || glowEntity == null) return;
+
+            // Настраиваем модели и флаги
+            glowRelay.SetModel(modelName);
+            glowRelay.RenderMode = RenderMode_t.kRenderNone;
+            glowRelay.Spawnflags = 256u;
+            glowRelay.DispatchSpawn();
+
+            glowEntity.SetModel(modelName);
+            glowEntity.Spawnflags = 256u;
+            glowEntity.DispatchSpawn();
+
+            // Настройка свечения
+            glowEntity.Glow.GlowType = (byte)_config.GlowSettings.GlowStyle;
+            glowEntity.Glow.GlowRange = _config.GlowSettings.GlowRange;
+            glowEntity.Glow.GlowTeam = -1;
+
+            lock (_lock)
+            {
+                _glowingEntities[player.Slot] = new GlowEntitySet(glowRelay, glowEntity);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Логируем, но не даём упасть плагину/серверу
+            Console.WriteLine($"[AdvancedGlow] Ошибка CreateGlowForPlayer: {ex}");
         }
     }
+
 
     public void RemoveGlowFromPlayer(CCSPlayerController player)
     {

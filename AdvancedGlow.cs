@@ -4,6 +4,7 @@ using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Modules.Admin;
 using AdvancedGlow.Services;
 using AdvancedGlow.Utils;
+using CounterStrikeSharp.API.Core.Attributes.Registration;
 
 namespace AdvancedGlow;
 
@@ -23,6 +24,7 @@ public class AdvancedGlow : BasePlugin, IPluginConfig<GlowConfig>
 
         _glowManager = new GlowManager(Config);
         AddCommand(Config.Command, "Toggle player glow visibility", OnGlowCommand);
+        AddCommand("css_reload_wh", "Перезапуск плагина WH", onReloadCommand);
         RegisterListener<Listeners.CheckTransmit>(OnCheckTransmit);
         RegisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn, HookMode.Post);
         RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath, HookMode.Post);
@@ -37,6 +39,7 @@ public class AdvancedGlow : BasePlugin, IPluginConfig<GlowConfig>
         }
     }
 
+
     public void OnConfigParsed(GlowConfig newConfig)
     {
         Config = newConfig;
@@ -47,6 +50,26 @@ public class AdvancedGlow : BasePlugin, IPluginConfig<GlowConfig>
             _glowManager.UpdateAllPlayersGlowColor();
         }
     }
+
+    [CommandHelper(whoCanExecute: CommandUsage.CLIENT_ONLY)]
+    private void onReloadCommand(CCSPlayerController player, CommandInfo command)
+    {
+        if (player == null) return;
+        if (!AdminManager.PlayerHasPermissions(player, "@css/root"))
+        {
+            player.PrintToChat($"У вас нет прав для использования этой команды");
+            return;
+        }
+
+        player.PrintToChat("ADM WH | Конфигурация перезагружена.");
+
+        AddTimer(0.1f, () =>
+        {
+            Server.ExecuteCommand("css_plugins unload plugins/AdvancedGlow/AdvancedGlow.dll");
+            Server.ExecuteCommand("css_plugins load plugins/AdvancedGlow/AdvancedGlow.dll");
+        });
+    }
+
 
     [CommandHelper(whoCanExecute: CommandUsage.CLIENT_ONLY)]
     private void OnGlowCommand(CCSPlayerController player, CommandInfo command)
@@ -174,7 +197,7 @@ public class AdvancedGlow : BasePlugin, IPluginConfig<GlowConfig>
         if (player == null || !player.IsValid)
             return HookResult.Continue;
 
-        AddTimer(0.2f, () =>
+        AddTimer(0.75f, () =>
         {
             if (player.IsValid && player.PawnIsAlive)
             {
